@@ -1,7 +1,7 @@
 const events = require("../events.json");
 
 exports.eventsHome = async (req, res) => {
-    res.send("<h1>HOLA MUNDO</h1>");
+    res.send("<h1>Esta es la API de eventos de Angelina Tresca</h1>");
 };
 
 exports.getEvents = async (req, res) => {
