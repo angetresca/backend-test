@@ -1,0 +1,28 @@
+{
+  "name": "backend-test",
+  "version": "1.0.0",
+  "description": "NodeJS backend test",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "start": "node ./app/index.js",
+    "dev": "nodemon ./app/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angetresca/backend-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angetresca/backend-test/issues"
+  },
+  "homepage": "https://github.com/angetresca/backend-test#readme"
+}

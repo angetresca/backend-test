@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "name": "Evento 1",
+        "location": "Teatro",
+        "description": "Este evento será divertido",
+        "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
+        "dates": [
+            {
+                "datetime": "20/07/20 19:30",
+                "price": 200
+            },
+            {
+                "datetime": "20/07/20 20:00",
+                "price": 300
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Evento 2",
+        "location": "Cine",
+        "description": "Este evento será aburrido",
+        "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
+        "dates": [
+            {
+                "datetime": "21/07/20 19:30",
+                "price": 200
+            },
+            {
+                "datetime": "21/07/20 20:00",
+                "price": 300
+            }
+        ]
+    }
+]
