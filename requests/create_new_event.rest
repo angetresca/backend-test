@@ -39,3 +39,24 @@ content-type: application/json
         }
     ]
 }
+
+###
+
+POST http://localhost:3000/api/events
+content-type: application/json
+
+{
+    "name": "Evento sin location",
+    "description": "Este evento es nuevo",
+    "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
+    "dates": [
+        {
+            "datetime": "22/07/20 19:30",
+            "price": 200
+        },
+        {
+            "datetime": "22/07/20 20:00",
+            "price": 300
+        }
+    ]
+}

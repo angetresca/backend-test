@@ -30,5 +30,10 @@ module.exports = function () {
         eventController.deleteEventById
     );
 
+    // modify event by id
+    router.put("/api/events/:id",
+        eventController.modifyEventById
+    );
+
     return router;
 };

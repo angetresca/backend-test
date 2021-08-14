@@ -1,0 +1,7 @@
+PUT http://localhost:3000/api/events/61182e685e89b93f9b893ba7
+content-type: application/json
+
+{
+    "name": "Evento modificado",
+    "location": "CINE"
+}
