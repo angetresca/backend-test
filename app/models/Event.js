@@ -16,6 +16,9 @@ eventSchema.set("toJSON", {
         returnedObject.id = returnedObject._id;
         delete returnedObject._id;
         delete returnedObject.__v;
+        returnedObject.dates.forEach(date => {
+            delete date._id;
+        });
     }
 });
 

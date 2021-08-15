@@ -1,18 +1,19 @@
+# EVENT WITH ALL THE DATA
 POST http://localhost:3000/api/events
 content-type: application/json
 
 {
     "name": "Nuevo evento",
     "location": "Teatro",
-    "description": "Este evento es nuevo",
+    "description": "Este evento es nuevo nuevo",
     "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
     "dates": [
         {
-            "datetime": "22/07/20 19:30",
+            "datetime": "2021-05-26T23:00:00.000Z",
             "price": 200
         },
         {
-            "datetime": "22/07/20 20:00",
+            "datetime": "Mon, 25 Dec 2021 20:30:00 GMT",
             "price": 300
         }
     ]
@@ -21,6 +22,7 @@ content-type: application/json
 
 ###
 
+# EVENT WITHOUT NAME DATA
 POST http://localhost:3000/api/events
 content-type: application/json
 
@@ -30,11 +32,11 @@ content-type: application/json
     "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
     "dates": [
         {
-            "datetime": "22/07/20 19:30",
+            "datetime": "Mon, 25 Dec 2021 13:30:00 GMT",
             "price": 200
         },
         {
-            "datetime": "22/07/20 20:00",
+            "datetime": "Mon, 25 Dec 2021 20:30:00 GMT",
             "price": 300
         }
     ]
@@ -42,6 +44,7 @@ content-type: application/json
 
 ###
 
+# EVENT WITHOUT LOCATION DATA
 POST http://localhost:3000/api/events
 content-type: application/json
 
@@ -51,11 +54,11 @@ content-type: application/json
     "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
     "dates": [
         {
-            "datetime": "22/07/20 19:30",
+            "datetime": "Mon, 25 Dec 2021 13:30:00 GMT",
             "price": 200
         },
         {
-            "datetime": "22/07/20 20:00",
+            "datetime": "Mon, 25 Dec 2021 13:30:00 GMT",
             "price": 300
         }
     ]

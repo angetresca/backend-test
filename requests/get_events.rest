@@ -1,0 +1,12 @@
+# GET ALL EVENTS
+GET http://localhost:3000/api/events
+
+###
+
+# GET EVENTS BY DATE
+GET http://localhost:3000/api/events?startDate=2021-05-26T00:00:00.000Z&endDate=2021-05-26T23:59:00.000Z
+
+###
+
+# GET EVENTS BY NAME
+GET http://localhost:3000/api/events?name=Evento

@@ -10,7 +10,7 @@ module.exports = function () {
         eventController.eventsHome
     );
 
-    // get all events 
+    // get events 
     router.get("/api/events",
         eventController.getEvents
     );

@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Event = require("../models/Event");
 
 exports.eventsHome = (req, res) => {
@@ -6,7 +5,20 @@ exports.eventsHome = (req, res) => {
 };
 
 exports.getEvents = (req, res) => {
-    Event.find({}).then(events => {
+    let filters = {};
+    const {name, startDate, endDate} = req.query;
+    
+    if (name) {
+        filters["name"] = { $regex: ".*" + name + ".*", $options: "i" };
+    }
+
+    if (startDate && endDate) {
+        filters["dates.datetime"] = {
+            "$gte": new Date(startDate), 
+            "$lt": new Date(endDate)
+        };
+    }
+    Event.find(filters).then(events => {
         res.json(events);
     });
 };
@@ -14,34 +26,24 @@ exports.getEvents = (req, res) => {
 exports.createNewEvent = (req, res) => {
     const data = req.body;
 
-    if (!data || !data.name) {
-        return res.status(400).json({error: "event.name is missing"});
+    if (!data || !data.name || !data.location || !data.description || !data.dates || data.dates.length === 0) {
+        return res.status(400).json({error: "event info is incomplete"});
     }
-
-    const newEvent = new Event({
-        "name": data.name,
-        "location": data.location,
-        "description": data.description,
-        "photoUrl": data.photoUrl,
-        "dates": [
-            {
-                "datetime": new Date(),
-                "price": 200
-            },
-            {
-                "datetime": new Date(),
-                "price": 300
-            }
-        ]
+  
+    data.dates = data.dates.map((date) => {
+        return {
+            "datetime": new Date(date.datetime),
+            "price": date.price
+        };
     });
+
+    const newEvent = new Event(data);
     
     newEvent.save()
         .then(()=> {
-            mongoose.connection.close();
             res.status(201).json(newEvent);
         })
         .catch(err => {
-            mongoose.connection.close();
             res.status(500).end(err.toString());
         });
 };
@@ -49,24 +51,20 @@ exports.createNewEvent = (req, res) => {
 exports.getEventById = (req, res, next) => {
     const {id} = req.params;
     Event.findById(id).then(event => {
-        mongoose.connection.close();
         if (event) {
             res.status(200).json(event);
         } else {
             res.status(404).end("Event not found");
         }
         
-    }).catch(err => {
-        mongoose.connection.close();
-        next(err);
-    });
+    }).catch(err => next(err));
 };
 
 exports.deleteEventById = (req, res, next) => {
     const {id} = req.params;
     Event.findByIdAndRemove(id).then(()=> {
         res.status(200).send(`event with id: ${id} was deleted`);
-    }).catch(err=> next(err));
+    }).catch(err => next(err));
 };
 
 exports.modifyEventById = (req, res, next) => {
@@ -74,28 +72,30 @@ exports.modifyEventById = (req, res, next) => {
 
     const data = req.body;
 
-    if (!data || !data.name) {
-        return res.status(400).json({error: "event.name is missing"});
+    if (!data) {
+        return res.status(400).json({error: "event info is incomplete"});
     }
     
-    const newEventInfo = new Event({
-        "name": data.name,
-        "location": data.location,
-        "description": data.description,
-        "photoUrl": data.photoUrl,
-        "dates": [
-            {
-                "datetime": new Date(),
-                "price": 200
-            },
-            {
-                "datetime": new Date(),
-                "price": 300
-            }
-        ]
+    if (data.dates && data.dates.length) {
+        data.dates = data.dates.map((date) => {
+            return {
+                "datetime": new Date(date.datetime),
+                "price": date.price
+            };
+        });
+    }
+    
+    const newEventInfo = {};
+
+    Object.keys(data).forEach((key)=> {
+        newEventInfo[key] = data[key];
     });
 
     Event.findByIdAndUpdate(id, newEventInfo, {new: true}).then(result=> {
-        res.status(200).json(result);
-    }).catch(err=> next(err));
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).end("Event not found");
+        }
+    }).catch(err => next(err));
 };

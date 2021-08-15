@@ -1,7 +1,13 @@
-PUT http://localhost:3000/api/events/61182e685e89b93f9b893ba7
+PUT http://localhost:3000/api/events/61182ecc69c6284005a1bb78
 content-type: application/json
 
 {
-    "name": "Evento modificado",
+    "name": "Evento modificadoo",
+    "dates": [
+        {
+            "datetime": "2021-05-26T23:00:00.000Z",
+            "price": 400
+        }
+    ],
     "location": "CINE"
 }
