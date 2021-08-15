@@ -6,18 +6,23 @@ exports.eventsHome = (req, res) => {
 
 exports.getEvents = (req, res) => {
     let filters = {};
-    const {name, startDate, endDate} = req.query;
+    const {startDate, endDate, name, highlighted} = req.query;
     
     if (name) {
         filters["name"] = { $regex: ".*" + name + ".*", $options: "i" };
     }
 
+    if (highlighted) {
+        filters["highlighted"] = true;
+    }
+
     if (startDate && endDate) {
         filters["dates.datetime"] = {
-            "$gte": new Date(startDate), 
-            "$lt": new Date(endDate)
+            $gte: new Date(startDate), 
+            $lt: new Date(endDate)
         };
     }
+
     Event.find(filters).sort("dates.datetime").then(events => {
         res.json(events);
     });
@@ -36,6 +41,10 @@ exports.createNewEvent = (req, res) => {
             "price": date.price
         };
     });
+
+    if (data.highlighted == null) {
+        data.highlighted = false;
+    }
 
     const newEvent = new Event(data);
     
@@ -109,7 +118,7 @@ exports.shareEventInTwitter = (req, res, next) => {
             // Now it is simulated that the event is shared correctly.
             setTimeout(function(){ 
                 res.status(200).json(event);
-            }, 1000);
+            }, 50);
         } else {
             res.status(404).end("Event not found");
         }

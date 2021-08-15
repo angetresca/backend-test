@@ -1,18 +1,19 @@
-PUT http://localhost:3000/api/events/61182ecc69c6284005a1bb78
+PUT http://localhost:3000/api/events/61196fcb70a06b0234855df9
 content-type: application/json
 
 {
-    "name": "Evento modificadoo",
-    "description": "modificado",
+    "name": "Evento de diciembre",
+    "description": "Este evento fue modificado",
     "dates": [
         {
-            "datetime": "2021-08-01T12:00:00.000Z",
+            "datetime": "Mon, 01 Dec 2021 20:30:00 GMT",
             "price": 400
         },
         {
-            "datetime": "2021-04-01T12:00:00.000Z",
+            "datetime": "Mon, 01 Dec 2021 22:30:00 GMT",
             "price": 400
         }
     ],
-    "location": "CINE"
+    "location": "CINE",
+    "highlighted": false
 }

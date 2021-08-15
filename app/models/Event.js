@@ -6,6 +6,7 @@ const eventSchema = new Schema({
     name: String,
     location: String,
     description: String,
+    highlighted: Boolean,
     photoUrl: String,
     dates: [{datetime: Date, price: Number}],
 });

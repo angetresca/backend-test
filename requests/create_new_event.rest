@@ -3,9 +3,32 @@ POST http://localhost:3000/api/events
 content-type: application/json
 
 {
-    "name": "Nuevo evento",
+    "name": "Evento de agosto",
     "location": "Teatro",
-    "description": "Este evento es nuevo nuevo",
+    "description": "Este evento es en agosto",
+    "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
+    "dates": [
+        {
+            "datetime": "Mon, 01 Aug 2021 20:30:00 GMT",
+            "price": 200
+        },
+        {
+            "datetime": "Mon, 01 Aug 2021 21:30:00 GMT",
+            "price": 300
+        }
+    ],
+    "highlighted": true
+}
+
+###
+# EVENT WITHOUT HIGHLIGHTED DATA (defaults to false)
+POST http://localhost:3000/api/events
+content-type: application/json
+
+{
+    "name": "Evento no destacado",
+    "location": "Teatro",
+    "description": "Este evento no es destacado",
     "photoUrl": "https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg",
     "dates": [
         {
@@ -18,7 +41,6 @@ content-type: application/json
         }
     ]
 }
-
 
 ###
 
