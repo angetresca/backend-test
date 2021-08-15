@@ -1,7 +1,8 @@
 const Event = require("../models/Event");
+const path = require("path");
 
 exports.eventsHome = (req, res) => {
-    res.send("<h1>Esta es la API de eventos de Angelina Tresca</h1>");
+    res.sendFile(path.join(__dirname, "/../home.html"));
 };
 
 exports.getEvents = (req, res) => {

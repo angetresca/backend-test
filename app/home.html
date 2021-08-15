@@ -1,0 +1,131 @@
+<html>
+<head>
+    <style>
+        body {
+            font-size: 16px;
+            margin: 2em;
+            margin-top: 0em;
+            padding: 3em;
+            font-family:Arial, Helvetica, sans-serif;
+            background-color: rgb(249, 240, 238);
+        }
+        h1 {
+            color:rgb(213, 120, 109);
+            text-align: center;
+        }
+        h3 {
+            color:rgb(0, 88, 9);
+        }
+        .rest {
+            width: fit-content;
+            background-color: rgb(223, 223, 223);
+            padding: 1rem;
+            border-radius: 1em;
+        }
+        blockquote {
+            border-left: royalblue solid 3px;
+            padding-left: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="api-de-eventos-de-angelina-tresca">API de eventos de Angelina Tresca</h1>
+
+    <h3 id="get-all-events">GET ALL EVENTS</h3>
+    <pre class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events</code></pre>
+    <h3 id="get-events-filtering">GET EVENTS FILTERING</h3>
+    <p>Todos los filtros pueden ser combinados:</p>
+    <ol style="list-style-type: decimal">
+        <li>
+            <b>Por fechas</b>
+            <pre
+                class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events?startDate=Mon, 01 Aug 2021 00:00:00 UTC&amp;endDate=Mon, 01 Aug 2021 23:59:59 UTC</code></pre>
+            
+        </li>
+    </ol>
+    <blockquote>
+        <p>Son necesarias ambas fechas (<code>startDate</code> y <code>endDate</code>) para que este filtro sea
+            aplicado.</p>
+    </blockquote>
+    <blockquote>
+        <p>Todas las fechas en esta API deben cumplir con el estándar IETF en inglés) de la forma:
+            <code>Fri, 1 Jan 2010 00:00:00 UTC</code>.
+        </p>
+    </blockquote>
+    <ol start="2" style="list-style-type: decimal">
+        <li>
+            <b>Por nombre</b>
+            <pre class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events?name=agos</code></pre>
+        </li>
+        <li>
+            <b>Por destacado</b>
+            <pre
+                class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events?highlighted=true</code></pre>
+        </li>
+    </ol>
+    <h3 id="get-event-by-id">GET ONE EVENT BY ID</h3>
+    <pre class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events/{event_id}</code></pre>
+    <h3 id="delete-event-by-id">DELETE EVENT BY ID</h3>
+    <pre class="rest"><code>DELETE https://intense-brushlands-88118.herokuapp.com/api/events/{event_id}</code></pre>
+    <h3 id="modify-event-by-id">MODIFY EVENT BY ID</h3>
+    <pre class="rest"><code>PUT https://intense-brushlands-88118.herokuapp.com/api/events/{event_id}
+content-type: application/json
+
+{
+    &quot;description&quot;: &quot;Este evento fue modificado&quot;,
+    &quot;dates&quot;: [
+        {
+            &quot;datetime&quot;: &quot;Mon, 01 Dec 2021 20:30:00 GMT&quot;,
+            &quot;price&quot;: 400
+        },
+        {
+            &quot;datetime&quot;: &quot;Mon, 01 Dec 2021 22:30:00 GMT&quot;,
+            &quot;price&quot;: 400
+        }
+    ],
+    &quot;location&quot;: &quot;CINE&quot;,
+    &quot;highlighted&quot;: false
+}</code></pre>
+    <blockquote>
+        <p>Los datos que no se envíen no serán modificados. Si se envía el campo dates, reemplazará a todo el array de
+            dates
+            que tenga previamente el evento.</p>
+    </blockquote>
+    <h3 id="share-event-by-id">SHARE EVENT BY ID</h3>
+    <ol style="list-style-type: decimal">
+        <li>
+            <p>Compartir en Twitter:</p>
+            <pre
+                class="rest"><code>GET https://intense-brushlands-88118.herokuapp.com/api/events/{event_id}/share/tw</code></pre>
+        </li>
+    </ol>
+    <blockquote>
+        <p>En este momento, este endpoint sólo simula en envío del evento a Twitter.</p>
+    </blockquote>
+    <h3 id="create-new-event">CREATE NEW EVENT</h3>
+    <pre class="rest"><code>POST https://intense-brushlands-88118.herokuapp.com/api/events
+content-type: application/json
+
+{
+    &quot;name&quot;: &quot;Evento de agosto&quot;,
+    &quot;location&quot;: &quot;Teatro&quot;,
+    &quot;description&quot;: &quot;Este evento es en agosto&quot;,
+    &quot;photoUrl&quot;: &quot;https://imagekit.androidphoria.com/wp-content/uploads/como-buscar-una-imagen-en-facebook-con-una-foto.jpg&quot;,
+    &quot;dates&quot;: [
+        {
+            &quot;datetime&quot;: &quot;Mon, 01 Aug 2021 20:30:00 GMT&quot;,
+            &quot;price&quot;: 200
+        },
+        {
+            &quot;datetime&quot;: &quot;Mon, 01 Aug 2021 21:30:00 GMT&quot;,
+            &quot;price&quot;: 300
+        }
+    ],
+    &quot;highlighted&quot;: true
+}</code></pre>
+    <blockquote>
+        <p>El campo <code>highlighted</code> es opcional. Por defecto es <code>false</code>.</p>
+    </blockquote>
+</body>
+
+</html>
