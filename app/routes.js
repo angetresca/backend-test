@@ -35,5 +35,10 @@ module.exports = function () {
         eventController.modifyEventById
     );
 
+    // share event in twitter by id
+    router.get("/api/events/:id/share/tw",
+        eventController.shareEventInTwitter
+    );
+
     return router;
 };

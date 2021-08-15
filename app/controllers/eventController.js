@@ -18,7 +18,7 @@ exports.getEvents = (req, res) => {
             "$lt": new Date(endDate)
         };
     }
-    Event.find(filters).then(events => {
+    Event.find(filters).sort("dates.datetime").then(events => {
         res.json(events);
     });
 };
@@ -97,5 +97,22 @@ exports.modifyEventById = (req, res, next) => {
         } else {
             res.status(404).end("Event not found");
         }
+    }).catch(err => next(err));
+};
+
+exports.shareEventInTwitter = (req, res, next) => {
+    const {id} = req.params;
+
+    Event.findById(id).then(event => {
+        if (event) {
+            // Here should be the api call to twitter. 
+            // Now it is simulated that the event is shared correctly.
+            setTimeout(function(){ 
+                res.status(200).json(event);
+            }, 1000);
+        } else {
+            res.status(404).end("Event not found");
+        }
+        
     }).catch(err => next(err));
 };

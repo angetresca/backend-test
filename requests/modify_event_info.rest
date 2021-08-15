@@ -3,9 +3,14 @@ content-type: application/json
 
 {
     "name": "Evento modificadoo",
+    "description": "modificado",
     "dates": [
         {
-            "datetime": "2021-05-26T23:00:00.000Z",
+            "datetime": "2021-08-01T12:00:00.000Z",
+            "price": 400
+        },
+        {
+            "datetime": "2021-04-01T12:00:00.000Z",
             "price": 400
         }
     ],
